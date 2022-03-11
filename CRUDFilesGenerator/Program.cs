@@ -43,16 +43,33 @@ static async Task CrudFilesGenerator()
     Console.ReadLine();
 
 
-    string dir = @"C:\CRUDFilesOutput\";
+    string dir = @"D:\Projetos\BrunoDev\CRUDGenerator\";
     if (!Directory.Exists(dir))
     {
         Directory.CreateDirectory(dir);
     }
 
-    var fileGenerator = new FileGenerator(projectName, featureName, moduleName, dir);
+    Console.WriteLine("------------------------------------------------------");
+    Console.WriteLine("");
+    Console.WriteLine("Agora vamos criar os arquivos do frontend: ");
+    Console.WriteLine("");
+    Console.WriteLine("------------------------------------------------------");
+    Console.WriteLine("Digite o nome do projeto do frontend ou pressione enter para utilizar o nome definido no código: ");
+    Console.WriteLine("");
+    string projectFrontName = Console.ReadLine();
+    projectFrontName = string.IsNullOrEmpty(projectFrontName) ? "SMARAPD.SS-WebApp." : projectFrontName;
+
+
+    Console.WriteLine("------------------------------------------------------");
+    Console.WriteLine("Para gerar os arquivos pressione enter!");
+    Console.ReadLine();
+
+
+    var fileGeneratorFrontend = new FileGeneratorFrontend(projectFrontName, featureName, moduleName, dir);
 
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Iniciando a geração dos arquivos");
     Console.WriteLine("------------------------------------------------------");
-    fileGenerator.Generate();
+
+    fileGeneratorFrontend.GenerateFrontend();
 }
