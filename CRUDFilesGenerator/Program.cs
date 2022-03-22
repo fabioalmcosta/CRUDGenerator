@@ -18,6 +18,10 @@ static async Task CrudFilesGenerator()
     string projectName = Console.ReadLine();
     projectName = string.IsNullOrEmpty(projectName) ? "SMARAPD.SS-API." : projectName;
 
+    Console.WriteLine("Digite o nome do projeto a ser utilizado no namespace dos arquivos: ");
+    string nameSpace = Console.ReadLine();
+    nameSpace = string.IsNullOrEmpty(nameSpace) ? "SMARAPD.SS_API." : nameSpace;
+
 
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Digite o nome da feature ou pressione enter para utilizar o nome definido no código: ");
@@ -30,9 +34,16 @@ static async Task CrudFilesGenerator()
     string moduleName = Console.ReadLine();
     moduleName = string.IsNullOrEmpty(moduleName) ? "Atestado" : moduleName;
 
+    Console.WriteLine("------------------------------------------------------");
+    Console.WriteLine("Digite o caminho do diretório de backend: ");
+    string dir = Console.ReadLine();
+    dir = string.IsNullOrEmpty(dir) ? @"C:\CRUDFilesOutput\backend\" : dir;
+
     Console.WriteLine();
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("O nome do projeto definido é: " + projectName);
+    Console.WriteLine();
+    Console.WriteLine("O namespace definido é: " + nameSpace);
     Console.WriteLine();
     Console.WriteLine("O nome da feature definida é: " + featureName);
     Console.WriteLine();
@@ -43,11 +54,18 @@ static async Task CrudFilesGenerator()
     Console.ReadLine();
 
 
-    string dir = @"D:\Projetos\BrunoDev\CRUDGenerator\";
     if (!Directory.Exists(dir))
     {
         Directory.CreateDirectory(dir);
     }
+
+    var fileGenerator = new FileGenerator(projectName, featureName, moduleName, dir, nameSpace);
+
+    Console.WriteLine("------------------------------------------------------");
+    Console.WriteLine("Iniciando a geração dos arquivos do Backend");
+    Console.WriteLine("------------------------------------------------------");
+
+    fileGenerator.Generate();
 
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("");
@@ -59,13 +77,18 @@ static async Task CrudFilesGenerator()
     string projectFrontName = Console.ReadLine();
     projectFrontName = string.IsNullOrEmpty(projectFrontName) ? "SMARAPD.SS-WebApp." : projectFrontName;
 
+    Console.WriteLine("------------------------------------------------------");
+    Console.WriteLine("Digite o caminho do diretório de backend: ");
+    string dirFront = Console.ReadLine();
+    dirFront = string.IsNullOrEmpty(dirFront) ? @"C:\CRUDFilesOutput\frontend\" : dirFront;
+
 
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Para gerar os arquivos pressione enter!");
     Console.ReadLine();
 
 
-    var fileGeneratorFrontend = new FileGeneratorFrontend(projectFrontName, featureName, moduleName, dir);
+    var fileGeneratorFrontend = new FileGeneratorFrontend(projectFrontName, featureName, moduleName, dirFront);
 
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Iniciando a geração dos arquivos");

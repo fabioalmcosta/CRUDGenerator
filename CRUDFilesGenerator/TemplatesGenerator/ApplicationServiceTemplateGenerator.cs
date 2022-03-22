@@ -1,4 +1,4 @@
-﻿public static class UnitOfWorkTemplateGenerator
+﻿public static class ApplicationServiceTemplateGenerator
 {
     public static string WriteModelClass(string projectName, string featureName, string moduleName)
     {
