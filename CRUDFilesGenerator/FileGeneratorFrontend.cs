@@ -20,12 +20,12 @@ namespace CRUDFilesGenerator
         {
             if (char.IsUpper(_featureName[0]) == true)
             {
-                _featureName = _featureName.ToLower();
+                _featureName = char.ToLower(_featureName[0]) + _featureName.Substring(1);
             }
 
             if (char.IsUpper(_moduleName[0]) == true)
             {
-                _moduleName = _moduleName.ToLower();
+                _moduleName = char.ToLower(_moduleName[0]) + _moduleName.Substring(1);
             }
 
             GenerateGrid();
@@ -64,7 +64,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de grid!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, GridTemplateGenerator.WriteGridClass(_featureName, _moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -84,7 +84,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de formulário!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, FormTemplateGenerator.WriteFormClass(_featureName, _moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -104,7 +104,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando container da grid da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, SearchTemplateGenerator.WriteSearchClass( _moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -124,7 +124,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando container de adição da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, NewTemplateGenerator.WriteNewClass( _moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -144,7 +144,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando container de visualização da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, ViewTemplateGenerator.WriteViewClass(_moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -164,7 +164,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando container de edição da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, EditTemplateGenerator.WriteEditClass(_moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -184,7 +184,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando service da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, ServiceTemplateGenerator.WriteServiceClass(_moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -204,7 +204,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de actions da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, ActionsTemplateGenerator.WriteActionsClass(_moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -224,7 +224,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de actionsTypes da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, ActionTypesTemplateGenerator.WriteActionsTypesClass(_featureName, _moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -244,7 +244,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de reducer da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, ReducerTemplateGenerator.WriteReducerClass(_featureName, _moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -264,7 +264,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo saga da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, SagaTemplateGenerator.WriteSagaClass(_featureName, _moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -284,7 +284,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de selectors da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, SelectorsTemplateGenerator.WriteSelectorsClass(_featureName, _moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -304,7 +304,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo ddados da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, DDadosTemplateGenerator.WriteDDadosClass( _moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -324,7 +324,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo Grid Ddados da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, GridDDadosTemplateGenerator.WriteGridDDadosClass(_moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -342,9 +342,9 @@ namespace CRUDFilesGenerator
             var fileDir = dir + _moduleName + ".routes.ts";
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine();
-            Console.WriteLine("Gerando arquivo Grid Ddados da entidade!");
+            Console.WriteLine("Gerando arquivo routes da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, "");
+            await File.WriteAllTextAsync(fileDir, RoutesTemplateGenerator.WriteRoutesClass(_featureName, _moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
