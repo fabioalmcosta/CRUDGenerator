@@ -34,6 +34,7 @@
         GenerateService();
         GenerateMappers();
         GenerateValidations();
+        GenerateDtos();
         GenerateTestsMocks();
         GenerateTestsModules();
 
@@ -180,8 +181,8 @@
         Console.WriteLine();
         Console.WriteLine("Gerando arquivo de application service!");
 
-        await File.WriteAllTextAsync(fileDir, "");
-        await File.WriteAllTextAsync(iFileDir, "");
+        await File.WriteAllTextAsync(fileDir, ApplicationServiceTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName));
+        await File.WriteAllTextAsync(iFileDir, ApplicationServiceTemplateGenerator.WriteInterfaceModelClass(_nameSpace, _featureName, _moduleName));
 
         Console.WriteLine("Arquivo gerado com sucesso!");
         Console.WriteLine("Interface gerada com sucesso!");
@@ -202,7 +203,7 @@
         Console.WriteLine();
         Console.WriteLine("Gerando arquivo de mapper!");
 
-        await File.WriteAllTextAsync(fileDir, "");
+        await File.WriteAllTextAsync(fileDir, MapperTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName));
 
         Console.WriteLine("Arquivo gerado com sucesso!");
         Console.WriteLine();
@@ -222,7 +223,31 @@
         Console.WriteLine();
         Console.WriteLine("Gerando arquivo de validator!");
 
-        await File.WriteAllTextAsync(fileDir, "");
+        await File.WriteAllTextAsync(fileDir, ValidatorTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName));
+
+        Console.WriteLine("Arquivo gerado com sucesso!");
+        Console.WriteLine();
+        Console.WriteLine("------------------------------------------------------");
+    }
+    private async void GenerateDtos()
+    {
+        string dir = _dir + _projectName + @"Croscutting\DTO\" + _featureName + @"\" + _moduleName + @"Ctx\";
+
+        if (!Directory.Exists(dir))
+        {
+            Directory.CreateDirectory(dir);
+        }
+
+        var fileDir = dir + _moduleName;
+        Console.WriteLine("------------------------------------------------------");
+        Console.WriteLine();
+        Console.WriteLine("Gerando arquivos de dto!");
+
+        await File.WriteAllTextAsync(fileDir + "GetDto.cs", DtoTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName, "GetDto"));
+        await File.WriteAllTextAsync(fileDir + "GridDto.cs", DtoTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName, "GridDto"));
+        await File.WriteAllTextAsync(fileDir + "GridLookupDto.cs", DtoTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName, "GridLookupDto"));
+        await File.WriteAllTextAsync(fileDir + "PostDto.cs", DtoTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName, "PostDto"));
+        await File.WriteAllTextAsync(fileDir + "PutDto.cs", DtoTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName, "PutDto"));
 
         Console.WriteLine("Arquivo gerado com sucesso!");
         Console.WriteLine();

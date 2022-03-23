@@ -17,10 +17,7 @@ static async Task CrudFilesGenerator()
     Console.WriteLine("Digite o nome do projeto ou pressione enter para utilizar o nome definido no código: ");
     string projectName = Console.ReadLine();
     projectName = string.IsNullOrEmpty(projectName) ? "SMARAPD.SS-API." : projectName;
-
-    Console.WriteLine("Digite o nome do projeto a ser utilizado no namespace dos arquivos: ");
-    string nameSpace = Console.ReadLine();
-    nameSpace = string.IsNullOrEmpty(nameSpace) ? "SMARAPD.SS_API." : nameSpace;
+    string nameSpace = projectName.Replace("-", "_");
 
 
     Console.WriteLine("------------------------------------------------------");
