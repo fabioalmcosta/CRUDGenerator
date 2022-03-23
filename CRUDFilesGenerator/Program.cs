@@ -75,7 +75,7 @@ static async Task CrudFilesGenerator()
     projectFrontName = string.IsNullOrEmpty(projectFrontName) ? "SMARAPD.SS-WebApp." : projectFrontName;
 
     Console.WriteLine("------------------------------------------------------");
-    Console.WriteLine("Digite o caminho do diretório de backend: ");
+    Console.WriteLine("Digite o caminho do diretório de frontend: ");
     string dirFront = Console.ReadLine();
     dirFront = string.IsNullOrEmpty(dirFront) ? @"C:\CRUDFilesOutput\frontend\" : dirFront;
 
