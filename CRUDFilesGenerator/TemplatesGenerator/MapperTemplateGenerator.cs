@@ -8,7 +8,7 @@ using " + projectName + @"Crosscutting.DTO." + featureName + @"." + moduleName +
 namespace " + projectName + @"Service.Mappers." + featureName + @"." + moduleName + @"Ctx" + @"
 {";
 
-        stringFile = stringFile + "\r\n\tpublic class " + moduleName + "Mapper \r\n\t{\r\n";
+        stringFile = stringFile + "\r\n\tpublic class " + moduleName + "Mapper \r\n\t{\r\n\t\t";
 
         stringFile = stringFile + @"public " + moduleName + " MapearEntidade(" + moduleName + @"PostDto dto)
         {

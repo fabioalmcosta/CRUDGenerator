@@ -181,21 +181,21 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
 {";
 
         stringFile = stringFile + "\r\n\tpublic interface I" + moduleName + "ApplicationService \r\n\t{\r\n" + @"
-        Task<GridView<" + moduleName + @"GridDto>> FindByFilter(Filter filter, CancellationToken ct = default);
+            Task<GridView<" + moduleName + @"GridDto>> FindByFilter(Filter filter, CancellationToken ct = default);
 
-        Task<" + moduleName + @"GetDto> GetById(int id, CancellationToken ct);
+            Task<" + moduleName + @"GetDto> GetById(int id, CancellationToken ct);
 
-        Task<int> Create(" + moduleName + @"PostDto dto, CancellationToken ct = default);
+            Task<int> Create(" + moduleName + @"PostDto dto, CancellationToken ct = default);
 
-        Task Update(int id, " + moduleName + @"PutDto dto, CancellationToken ct = default);
+            Task Update(int id, " + moduleName + @"PutDto dto, CancellationToken ct = default);
 
-        Task Delete(int id, CancellationToken ct = default);
+            Task Delete(int id, CancellationToken ct = default);
 
-        Task Delete(IEnumerable<int> ids, CancellationToken ct = default);
+            Task Delete(IEnumerable<int> ids, CancellationToken ct = default);
 
-        Task<SuggestionView<GenericSuggestionDto>> GetSuggestion(string busca, int pageSize, dynamic obj, CancellationToken cancellationToken = default);
+            Task<SuggestionView<GenericSuggestionDto>> GetSuggestion(string busca, int pageSize, dynamic obj, CancellationToken cancellationToken = default);
 
-        GridView<" + moduleName + @"GridLookupDto> FindByFilterLookup(Filter filter, CancellationToken ct = default);
+            GridView<" + moduleName + @"GridLookupDto> FindByFilterLookup(Filter filter, CancellationToken ct = default);
 
 ";
 

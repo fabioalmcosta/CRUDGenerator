@@ -9,7 +9,7 @@ using " + projectName + @"Service.Validations.Base;
 namespace " + projectName + @"Service.Validations.Modules." + featureName + @"." + moduleName + @"Ctx" + @"
 {";
 
-        stringFile = stringFile + "\r\n\tpublic class " + moduleName + "Validator : BaseValidator<" + moduleName + "> \r\n\t{\r\n";
+        stringFile = stringFile + "\r\n\tpublic class " + moduleName + "Validator : BaseValidator<" + moduleName + "> \r\n\t{\r\n\t\t";
 
         stringFile = stringFile + @"public " + moduleName + @"Validator()
         {
