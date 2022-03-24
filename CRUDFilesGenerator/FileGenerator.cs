@@ -18,12 +18,12 @@
     {
         if (char.IsUpper(_featureName[0]) == false)
         {
-            throw new Exception("A primeira letra de uma feature deve ser maiúscula");
+            _featureName = char.ToUpper(_featureName[0]) + _featureName.Substring(1);
         }
 
         if (char.IsUpper(_moduleName[0]) == false)
         {
-            throw new Exception("A primeira letra de um module deve ser maiúscula");
+            _moduleName = char.ToUpper(_moduleName[0]) + _moduleName.Substring(1);
         }
 
         GenerateEntity();

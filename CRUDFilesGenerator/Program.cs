@@ -34,7 +34,7 @@ static async Task CrudFilesGenerator()
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Digite o caminho do diretório de backend: ");
     string dir = Console.ReadLine();
-    dir = string.IsNullOrEmpty(dir) ? @"C:\CRUDFilesOutput\backend\" : dir;
+    dir = string.IsNullOrEmpty(dir) ? @"C:\CRUDFilesOutput\backend\" + projectName + @"\" : dir + projectName + @"\";
 
     Console.WriteLine();
     Console.WriteLine("------------------------------------------------------");
