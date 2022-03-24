@@ -115,50 +115,6 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
 
             _uow." + moduleName + @"Repository.MassDelete(data);
             await _uow.CommitAsync(true);
-        }
-
-        public async Task<SuggestionView<GenericSuggestionDto>> GetSuggestion(string busca, int pageSize, dynamic obj, CancellationToken cancellationToken = default)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-
-            var query = _uow." + moduleName + @"Repository.GetAllReadOnly()
-                .Where(x => (x.Id + " + $"\" - \"" + @" + x.Nome).Contains(busca));
-
-            var result = query.Select(x => new GenericSuggestionDto
-            {
-                Id = x.Id,
-                Descricao = x.Nome,
-                Exibicao = x.Id + " + $"\" - \"" + @" + x.Nome
-            });
-
-            int dataCount = await result.CountAsync(cancellationToken);
-            result = result.Take(pageSize);
-
-            var suggestionView = new SuggestionView<GenericSuggestionDto> { dataCount = dataCount, dataList = await result.ToListAsync(cancellationToken) };
-
-            return suggestionView;
-        }
-
-        public GridView<" + moduleName + @"GridLookupDto> FindByFilterLookup(Filter filter, CancellationToken ct = default)
-        {
-            ct.ThrowIfCancellationRequested();
-
-            VerifyExists(filter);
-
-            int pageCount;
-
-            var query = _uow." + moduleName + @"Repository.GetAllReadOnly();
-
-            var queryDto = query.Select(x => new " + moduleName + @"GridLookupDto()
-            {
-
-            });
-
-            queryDto = queryDto.FindByFilter(filter, filter.pageNumber, filter.pageSize, out pageCount);
-
-            var gridView = new GridView<" + moduleName + @"GridLookupDto> { dataList = queryDto.ToList(), pageCount = pageCount };
-
-            return gridView;
         }";
 
         stringFile = stringFile + "\r\n\t} \r\n}";
@@ -192,11 +148,6 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
             Task Delete(int id, CancellationToken ct = default);
 
             Task Delete(IEnumerable<int> ids, CancellationToken ct = default);
-
-            Task<SuggestionView<GenericSuggestionDto>> GetSuggestion(string busca, int pageSize, dynamic obj, CancellationToken cancellationToken = default);
-
-            GridView<" + moduleName + @"GridLookupDto> FindByFilterLookup(Filter filter, CancellationToken ct = default);
-
 ";
 
         stringFile = stringFile + "\r\n\t} \r\n}";

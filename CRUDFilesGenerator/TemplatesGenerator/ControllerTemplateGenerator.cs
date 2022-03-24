@@ -80,21 +80,6 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
         public async Task<IActionResult> Post(" + moduleName + @"PostDto dto, CancellationToken ct) => Ok(await _appService.Create(dto, ct));
 
         /// <summary>
-        /// Busca de " + moduleName + @" por suggestion
-        /// </summary>
-        [HttpGet(" + "\"suggestion\"" + @")]
-        [SwaggerResponse((int)HttpStatusCode.OK, " + "\"Dados do Ppra em formato de suggestion.\"" + @", typeof(SuggestionView<GenericSuggestionDto>))]
-        public async Task<IActionResult> GetSuggestion([FromUri] string busca, [FromUri] int pageSize = 10, CancellationToken cancellationToken = default)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-
-            var parameters = HttpContext.Request.Query[" + "\"parameters\"" + @"].ToString();
-            dynamic obj = JsonConvert.DeserializeObject(" + "\"parameters\"" + @");
-
-            return Ok(await _appService.GetSuggestion(busca, pageSize, obj, cancellationToken));
-        }
-
-        /// <summary>
         /// Edição de um " + moduleName + @" existente através de um DTO de entrada.
         /// </summary>
         [HttpPut(" + "\"{ id:int}\"" + @")]
@@ -103,12 +88,7 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
         {
             await _appService.Update(id, dto, ct);
             return Ok();
-        }
-
-        [HttpPost]
-        [Route(" + "\"lookup\"" + @")]
-        [SwaggerResponse((int)HttpStatusCode.OK, " + "\"Dados do Ppra em formato de Grid.\"" + @", typeof(GridView<" + moduleName + @"GridDto>))]
-        public IActionResult GetByFilterLookup(Filter filter, CancellationToken ct) => Ok(_appService.FindByFilterLookup(filter, ct)); ";
+        }";
 
         stringFile = stringFile + "\r\n\t} \r\n}";
 

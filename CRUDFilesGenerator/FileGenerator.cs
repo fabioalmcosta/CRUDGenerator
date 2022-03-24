@@ -245,7 +245,6 @@
 
         await File.WriteAllTextAsync(fileDir + "GetDto.cs", DtoTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName, "GetDto"));
         await File.WriteAllTextAsync(fileDir + "GridDto.cs", DtoTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName, "GridDto"));
-        await File.WriteAllTextAsync(fileDir + "GridLookupDto.cs", DtoTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName, "GridLookupDto"));
         await File.WriteAllTextAsync(fileDir + "PostDto.cs", DtoTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName, "PostDto"));
         await File.WriteAllTextAsync(fileDir + "PutDto.cs", DtoTemplateGenerator.WriteModelClass(_nameSpace, _featureName, _moduleName, "PutDto"));
 
