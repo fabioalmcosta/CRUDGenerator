@@ -231,7 +231,7 @@
     }
     private async void GenerateDtos()
     {
-        string dir = _dir + _projectName + @"Croscutting\DTO\" + _featureName + @"\" + _moduleName + @"Ctx\";
+        string dir = _dir + _projectName + @"Crosscutting\DTO\" + _featureName + @"\" + _moduleName + @"Ctx\";
 
         if (!Directory.Exists(dir))
         {

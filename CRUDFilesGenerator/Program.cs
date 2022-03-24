@@ -57,7 +57,7 @@ static async Task CrudFilesGenerator()
         Directory.CreateDirectory(dir);
     }
 
-    var fileGenerator = new FileGenerator(projectName, featureName, moduleName, dir, nameSpace);
+    var fileGenerator = new FileGenerator(projectName + ".", featureName, moduleName, dir, nameSpace);
 
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Iniciando a geração dos arquivos do Backend");
