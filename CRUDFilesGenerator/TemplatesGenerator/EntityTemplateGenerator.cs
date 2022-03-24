@@ -14,7 +14,7 @@ namespace " + projectName + @"Domain.Entities." + featureName + @"." + moduleNam
         //stringFile = stringFile + "\r\n\t[Table(\"" + FileData.TableName + "\")]";
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + " \r\n\t{\r\n";
 
-        stringFile = stringFile + " \t\t[Key] \r\n\t\t[Column(\"Id\")] \r\n\t\tpublic long Id { get; set; };";
+        stringFile = stringFile + " \t\t[Key] \r\n\t\t[Column(\"Id\")] \r\n\t\tpublic int Id { get; set; }";
 
         //foreach (var field in Fields)
         //{

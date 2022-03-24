@@ -54,7 +54,7 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
         /// Exclusão de " + moduleName + @" através de um Id de entrada.
         /// </summary>
         [HttpDelete(" + "\"{ id:int}\"" + @")]
-        [SwaggerResponse((int)HttpStatusCode.OK, " + moduleName + " excluído." + @")]
+        [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} excluído.\"" + @")]
         public async Task<IActionResult> Delete(int id, CancellationToken ct)
         {
             await _appService.Delete(id, ct);
@@ -65,7 +65,7 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
         /// Exclusão em massa de " + moduleName + @"s através de Ids de entrada.
         /// </summary>
         [HttpDelete(" + "\"massdelete\"" + @")]
-        [SwaggerResponse((int)HttpStatusCode.OK, " + moduleName + " excluídos." + @")]
+        [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} excluídos.\"" + @")]
         public async Task<IActionResult> MassDelete(IEnumerable<int> data, CancellationToken ct)
         {
             await _appService.Delete(data, ct);
@@ -76,14 +76,14 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
         /// Inserção de um novo " + moduleName + @" através de um DTO de entrada.
         /// </summary>
         [HttpPost]
-        [SwaggerResponse((int)HttpStatusCode.OK, " + "\"Ppra inserido com sucesso.\"" + @", typeof(int))]
+        [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} inserido com sucesso.\"" + @", typeof(int))]
         public async Task<IActionResult> Post(" + moduleName + @"PostDto dto, CancellationToken ct) => Ok(await _appService.Create(dto, ct));
 
         /// <summary>
         /// Edição de um " + moduleName + @" existente através de um DTO de entrada.
         /// </summary>
         [HttpPut(" + "\"{ id:int}\"" + @")]
-        [SwaggerResponse((int)HttpStatusCode.OK, " + "\"Ppra editado com sucesso.\"" + @")]
+        [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} editado com sucesso.\"" + @")]
         public async Task<IActionResult> Put(int id, " + moduleName + @"PutDto dto, CancellationToken ct)
         {
             await _appService.Update(id, dto, ct);

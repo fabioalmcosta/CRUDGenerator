@@ -64,7 +64,7 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
 
             var " + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @" = await _uow." + moduleName + @"Repository.GetByIdAsync(id);
 
-            VerifyExists(ppra, _funcName);
+            VerifyExists(" + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @", _funcName);
 
             return _mapper.MapearEntidade(" + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @");
         }
