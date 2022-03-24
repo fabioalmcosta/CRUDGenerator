@@ -16,8 +16,9 @@ static async Task CrudFilesGenerator()
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Digite o nome do projeto ou pressione enter para utilizar o nome definido no código: ");
     string projectName = Console.ReadLine();
-    projectName = string.IsNullOrEmpty(projectName) ? "SMARAPD.SS-API." : projectName + ".";
+    projectName = string.IsNullOrEmpty(projectName) ? "SMARAPD.SS-API" : projectName;
     string nameSpace = projectName.Replace("-", "_");
+    nameSpace = nameSpace + ".";
 
 
     Console.WriteLine("------------------------------------------------------");
@@ -72,7 +73,7 @@ static async Task CrudFilesGenerator()
     Console.WriteLine("Digite o nome do projeto do frontend ou pressione enter para utilizar o nome definido no código: ");
     Console.WriteLine("");
     string projectFrontName = Console.ReadLine();
-    projectFrontName = string.IsNullOrEmpty(projectFrontName) ? "SMARAPD.SS-WebApp." : projectFrontName + ".";
+    projectFrontName = string.IsNullOrEmpty(projectFrontName) ? "SMARAPD.SS-WebApp" : projectFrontName;
 
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Digite o caminho do diretório de frontend: ");
