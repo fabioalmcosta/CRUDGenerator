@@ -93,4 +93,24 @@ static async Task CrudFilesGenerator()
     Console.WriteLine("------------------------------------------------------");
 
     fileGeneratorFrontend.GenerateFrontend();
+
+    Console.WriteLine("------------------------------------------------------");
+    Console.WriteLine("Iniciando a criação das migrations");
+    Console.WriteLine("------------------------------------------------------");
+
+    Console.WriteLine("------------------------------------------------------");
+    Console.WriteLine("Digite o ID do projeto ou pressione enter para utilizar o nome definido no código: ");
+
+    string projectId = Console.ReadLine();
+    string ID = string.IsNullOrEmpty(projectId) ? "29" : projectId;
+
+    Console.WriteLine("------------------------------------------------------");
+    Console.WriteLine("Digite o prefixo do projeto ou pressione enter para utilizar o nome definido no código: ");
+    
+    string prefixo = Console.ReadLine();
+    string prefixoP = string.IsNullOrEmpty(prefixo) ? "SS" : prefixo;
+
+    string migrationPath = @"C:\CRUDFilesOutput\Migration\";
+    var migrations = new FileGeneratorMigration(projectFrontName, featureName, moduleName, migrationPath , ID , prefixoP);
+    migrations.GenerateMigration();
 }

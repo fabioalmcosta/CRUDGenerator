@@ -46,14 +46,14 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
         /// <summary>
         /// Busca de " + moduleName + @" através de um Id de entrada.
         /// </summary>
-        [HttpGet(" + "\"{ id:int}\"" + @")]
+        [HttpGet(" + "\"{id:int}\"" + @")]
         [SwaggerResponse((int)HttpStatusCode.OK, " + "\"Dados do " + moduleName + " buscado.\"" + @", typeof(" + moduleName + @"GetDto))]
         public async Task<IActionResult> GetById(int id, CancellationToken ct) => Ok(await _appService.GetById(id, ct));
 
         /// <summary>
         /// Exclusão de " + moduleName + @" através de um Id de entrada.
         /// </summary>
-        [HttpDelete(" + "\"{ id:int}\"" + @")]
+        [HttpDelete(" + "\"{id:int}\"" + @")]
         [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} excluído.\"" + @")]
         public async Task<IActionResult> Delete(int id, CancellationToken ct)
         {
@@ -73,16 +73,16 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
         }
 
         /// <summary>
-        /// Inserção de um novo " + moduleName + @" através de um DTO de entrada.
+        /// Inserção de " + moduleName + @" através de um DTO de entrada.
         /// </summary>
         [HttpPost]
         [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} inserido com sucesso.\"" + @", typeof(int))]
         public async Task<IActionResult> Post(" + moduleName + @"PostDto dto, CancellationToken ct) => Ok(await _appService.Create(dto, ct));
 
         /// <summary>
-        /// Edição de um " + moduleName + @" existente através de um DTO de entrada.
+        /// Edição de " + moduleName + @" existente através de um DTO de entrada.
         /// </summary>
-        [HttpPut(" + "\"{ id:int}\"" + @")]
+        [HttpPut(" + "\"{id:int}\"" + @")]
         [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} editado com sucesso.\"" + @")]
         public async Task<IActionResult> Put(int id, " + moduleName + @"PutDto dto, CancellationToken ct)
         {
