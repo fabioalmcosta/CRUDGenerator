@@ -43,7 +43,7 @@ const " + nomeDaClasse + @"Grid: FC = (props: any) => {
                 const result = await _alert.confirm(messages.CONFIRMA_DELETE, 'Remover Registro Selecionado');
                 if (result) props."+ moduleName + @"Actions.remove(dataItem.Id);
             },
-            url: '/" + featureRouteName + "/" + moduleRouteName + @"/delete',
+            url: '/" + featureRouteName + "/" + moduleRouteName + @"/delete/:id',
         },
     ];
 
