@@ -7,13 +7,23 @@ namespace CRUDFilesGenerator
         private string _featureName;
         private string _moduleName;
         private string _projectName;
+        private string _internContext;
         private string _dir;
-        public FileGeneratorFrontend(string projectName, string featureName, string moduleName, string dir)
+        private string _pathImport;
+        private string _pathActions;
+        private string _actionsName;
+        private string _actionsTypes;
+        public FileGeneratorFrontend(string projectName, string featureName, string moduleName, string dir, string internContext, string pathImports, string pathActions, string actionsName, string actionsTypes)
         {
             _featureName = featureName;
             _moduleName = moduleName;
             _projectName = projectName;
             _dir = dir;
+            _internContext = internContext;
+            _pathImport = pathImports;
+            _pathActions = pathActions;
+            _actionsName = actionsName;
+            _actionsTypes = actionsTypes;
         }
 
         public async void GenerateFrontend()
@@ -53,7 +63,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateGrid()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\components\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\components\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -64,7 +74,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de grid!");
 
-            await File.WriteAllTextAsync(fileDir, GridTemplateGenerator.WriteGridClass(_featureName, _moduleName));
+            await File.WriteAllTextAsync(fileDir, GridTemplateGenerator.WriteGridClass(_featureName, _moduleName, _pathImport, _pathActions));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -73,7 +83,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateForm()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\components\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\components\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -84,7 +94,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de formulário!");
 
-            await File.WriteAllTextAsync(fileDir, FormTemplateGenerator.WriteFormClass(_featureName, _moduleName));
+            await File.WriteAllTextAsync(fileDir, FormTemplateGenerator.WriteFormClass(_featureName, _moduleName, _pathImport));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -93,7 +103,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateSearchFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\container\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\container\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -104,7 +114,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando container da grid da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, SearchTemplateGenerator.WriteSearchClass( _moduleName));
+            await File.WriteAllTextAsync(fileDir, SearchTemplateGenerator.WriteSearchClass(_moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -113,7 +123,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateNewFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\container\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\container\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -124,7 +134,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando container de adição da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, NewTemplateGenerator.WriteNewClass( _moduleName));
+            await File.WriteAllTextAsync(fileDir, NewTemplateGenerator.WriteNewClass(_moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -133,7 +143,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateViewFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\container\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\container\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -153,7 +163,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateEditFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\container\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\container\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -173,7 +183,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateServiceFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\service\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\service\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -193,7 +203,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateActionsFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\store\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\store\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -204,7 +214,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de actions da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, ActionsTemplateGenerator.WriteActionsClass(_moduleName));
+            await File.WriteAllTextAsync(fileDir, ActionsTemplateGenerator.WriteActionsClass(_moduleName, _actionsName, _actionsTypes));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -213,7 +223,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateActionTypesFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\store\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\store\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -224,7 +234,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de actionsTypes da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, ActionTypesTemplateGenerator.WriteActionsTypesClass(_featureName, _moduleName));
+            await File.WriteAllTextAsync(fileDir, ActionTypesTemplateGenerator.WriteActionsTypesClass(_featureName, _moduleName , _actionsTypes , _pathImport));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -233,7 +243,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateReducerFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\store\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\store\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -244,7 +254,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de reducer da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, ReducerTemplateGenerator.WriteReducerClass(_featureName, _moduleName));
+            await File.WriteAllTextAsync(fileDir, ReducerTemplateGenerator.WriteReducerClass(_featureName, _moduleName, _actionsTypes));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -253,7 +263,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateSagaFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\store\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\store\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -264,7 +274,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo saga da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, SagaTemplateGenerator.WriteSagaClass(_featureName, _moduleName));
+            await File.WriteAllTextAsync(fileDir, SagaTemplateGenerator.WriteSagaClass(_featureName, _moduleName, _actionsTypes , _pathImport));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -273,7 +283,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateSelectorsFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\store\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\store\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -284,7 +294,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo de selectors da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, SelectorsTemplateGenerator.WriteSelectorsClass(_featureName, _moduleName));
+            await File.WriteAllTextAsync(fileDir, SelectorsTemplateGenerator.WriteSelectorsClass(_featureName, _moduleName, _pathImport));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -293,7 +303,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateDdadosFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -304,7 +314,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo ddados da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, DDadosTemplateGenerator.WriteDDadosClass( _moduleName));
+            await File.WriteAllTextAsync(fileDir, DDadosTemplateGenerator.WriteDDadosClass(_moduleName));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();
@@ -313,7 +323,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateGridDdadosFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -333,7 +343,7 @@ namespace CRUDFilesGenerator
 
         private async void GenerateRoutesFile()
         {
-            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"\" + _moduleName + @"\";
+            string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -344,7 +354,7 @@ namespace CRUDFilesGenerator
             Console.WriteLine();
             Console.WriteLine("Gerando arquivo routes da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, RoutesTemplateGenerator.WriteRoutesClass(_featureName, _moduleName));
+            await File.WriteAllTextAsync(fileDir, RoutesTemplateGenerator.WriteRoutesClass(_featureName, _moduleName, _pathImport , _pathActions));
 
             Console.WriteLine("Arquivo gerado com sucesso!");
             Console.WriteLine();

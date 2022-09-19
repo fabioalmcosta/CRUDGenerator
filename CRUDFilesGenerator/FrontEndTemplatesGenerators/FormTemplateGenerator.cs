@@ -1,6 +1,6 @@
 ﻿public static class FormTemplateGenerator
 {
-    public static string WriteFormClass( string featureName, string moduleName)
+    public static string WriteFormClass(string featureName, string moduleName, string _pathActions)
     {
         var nomeDaClasse = char.ToUpper(moduleName[0]) + moduleName.Substring(1);
         var moduleRouteName = char.ToLower(moduleName[0]) + moduleName.Substring(1);
@@ -16,20 +16,20 @@ import " + moduleName + "Actions from '../store/" + moduleName + @".actions';
 import " + moduleName + "Selectors from '../store/" + moduleName + @".selectors';
 
 const " + nomeDaClasse + @"Form: FC = (props: any) => {
-    const { "+moduleName+ " } = props."+moduleName+ @"Selectors;
+    const { " + moduleName + " } = props." + moduleName + @"Selectors;
     const { onSubmit, prefix, routerManager } = props;
     const { Titulo, Campos } = DDados;
     const isView = prefix === 'V';
 
     const handleCancel = () => {
-        routerManager.redirect({ name: '" + featureRouteName+ "." +moduleRouteName+ "'"+ @"});
+        routerManager.redirect({ name: '" + _pathActions + "'" + @"});
     };
 
     return (
         <>
            <Form
                 boxForm
-                onSubmit={() => onSubmit("+moduleName+ @")}
+                onSubmit={() => onSubmit(" + moduleName + @")}
                 onCancel={() => handleCancel()}
                 prefix={prefix}
                 title={Titulo}
@@ -51,9 +51,9 @@ const " + nomeDaClasse + @"Form: FC = (props: any) => {
 export default connect({
     actions: { " + moduleName + @"Actions },
     selectors: { " + moduleName + @"Selectors },
-})(" + nomeDaClasse+ "Form); ";
+})(" + nomeDaClasse + "Form); ";
 
-    return stringFile;
+        return stringFile;
 
     }
 }

@@ -2,7 +2,7 @@
 
 public static class ActionsTemplateGenerator
 {
-    public static string WriteActionsClass(string moduleName)
+    public static string WriteActionsClass(string moduleName, string _actionsName, string _actionsTypes)
     {
         var nomeDaClasse = char.ToUpper(moduleName[0]) + moduleName.Substring(1);
 
@@ -24,23 +24,23 @@ public static class ActionsTemplateGenerator
 
 export default {
   getById: (id: number) => ({
-    type: types." + typeModuleName + @"_GET,
+    type: types." + _actionsTypes + @"_GET,
     payload: { id }
   }),
   set"+ nomeDaClasse + @": (data: unknown | null) => ({
-    type: types." + typeModuleName + @"_SET,
+    type: types." + _actionsTypes + @"_SET,
     payload: { data },
   }),
   save: (data: unknown | null) => ({
-    type: types." + typeModuleName + @"_POST,
+    type: types." + _actionsTypes + @"_POST,
     payload: { data },
   }),
   update: (id: number, data: unknown | null) => ({
-    type: types." + typeModuleName + @"_PUT,
+    type: types." + _actionsTypes + @"_PUT,
     payload: { id, data },
   }),
   remove: (id: number) => ({
-    type: types." + typeModuleName + @"_DELETE,
+    type: types." + _actionsTypes + @"_DELETE,
     payload: { id },
   }),
 };";

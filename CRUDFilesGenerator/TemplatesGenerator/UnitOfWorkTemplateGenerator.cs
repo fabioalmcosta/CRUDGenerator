@@ -1,16 +1,16 @@
 ﻿public static class UnitOfWorkTemplateGenerator
 {
-    public static string WriteModelClass(string projectName, string featureName, string moduleName)
+    public static string WriteModelClass(string projectName, string featureName, string moduleName, string _entityLocationUsing, string nameSpace, string nameSpaceInt, string _repositoryIntUsing)
     {
         var stringFile = @"using System;
 using Microsoft.Extensions.DependencyInjection;
 using SMARAPD.Common.Domain.AuditoriaCtx;
 using SMARAPD.Common.Infrastructure.Persistence.EntityFramework;
 using SMARAPD.SS_API.Infrastructure.Persistence.Model;
-using SMARAPD.SS_API.Infrastructure.Persistence.Repository." + featureName + @"." + moduleName + @"Ctx.Interfaces;" + @"
-using SMARAPD.SS_API.Infrastructure.Persistence.UnitOfWork." + featureName + @"." + moduleName + @"Ctx.Interfaces;" + @"
+using " + _repositoryIntUsing + @";
+using " + nameSpaceInt + @";
 
-namespace " + projectName + @"Infrastructure.Persistence.UnitOfWork." + featureName + @"." + moduleName + @"Ctx" + @"
+namespace " + projectName + @"Infrastructure.Persistence.UnitOfWork." + nameSpaceInt + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + "UnitOfWork  : GenericUnitOfWork, I" + moduleName + "UnitOfWork \r\n\t{\r\n";
@@ -30,12 +30,12 @@ namespace " + projectName + @"Infrastructure.Persistence.UnitOfWork." + featureN
         return stringFile;
     }
 
-    public static string WriteInterfaceModelClass(string projectName, string featureName, string moduleName)
+    public static string WriteInterfaceModelClass(string projectName, string featureName, string moduleName, string _entityLocationUsing, string nameSpaceInt, string _repositoryIntUsing)
     {
         var stringFile = @"using SMARAPD.Common.Infrastructure.Persistence;
-using " + projectName + @"Infrastructure.Persistence.Repository." + featureName + @"." + moduleName + @"Ctx.Interfaces;" + @"
+using " + projectName + _repositoryIntUsing + @";
 
-namespace " + projectName + @"Infrastructure.Persistence.UnitOfWork." + featureName + @"." + moduleName + @"Ctx.Interfaces" + @"
+namespace " + projectName + @"Infrastructure.Persistence.UnitOfWork." + nameSpaceInt + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic interface I" + moduleName + "UnitOfWork  : IGenericUnitOfWork \r\n\t{\r\n";

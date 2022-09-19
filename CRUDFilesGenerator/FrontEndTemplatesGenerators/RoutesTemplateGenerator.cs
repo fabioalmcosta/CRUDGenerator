@@ -2,7 +2,7 @@
 
 public static class RoutesTemplateGenerator
 {
-    public static string WriteRoutesClass(string featureName ,string moduleName)
+    public static string WriteRoutesClass(string featureName, string moduleName, string _pathImport, string _pathActions)
     {
 
         var nomeClasseBradCamp = char.ToUpper(moduleName[0]) + moduleName.Substring(1);
@@ -39,20 +39,20 @@ public static class RoutesTemplateGenerator
         var stringFile = @"import RouteType from '@/common/types/routes.types';
 import Grid from './container/" + moduleName + @".search';
 import View from './container/" + moduleName + @".view';
-import New from './container/"+ moduleName + @".new';
+import New from './container/" + moduleName + @".new';
 import Edit from './container/" + moduleName + @".edit';
 
 const routes: Array<RouteType> = [
     {
-        name: '"+ featureName + "."+ moduleName + @"',
-        path: '/" + featureName + "/" + moduleName + @"',
+        name: '" + _pathImport + @"',
+        path: '/" + _pathActions + @"',
         accessControl: true,
         component: Grid,
-        breadCrumb: [{ text: '"+ nomeFeatureBradCamp + "' }, { text: '"+ nomeClasseBradCamp + @"' }],
+        breadCrumb: [{ text: '" + nomeFeatureBradCamp + "' }, { text: '" + nomeClasseBradCamp + @"' }],
     },
     {
-        name: '" + featureName + "." + moduleName + @".new',
-        path: '/" + featureName + "/" + moduleName + @"/new',
+        name: '" + _pathImport + @".new',
+        path: '/" + _pathActions + @"/new',
         accessControl: true,
         component: New,
         breadCrumb: [
@@ -62,8 +62,8 @@ const routes: Array<RouteType> = [
         ],
     },
     {
-        name: '" + featureName + "." + moduleName + @".view',
-        path: '/" + featureName + "/" + moduleName + @"/view/:id',
+        name: '" + _pathImport + @".view',
+        path: '/" + _pathActions + @"/view/:id',
         accessControl: true,
         component: View,
         breadCrumb: [
@@ -73,8 +73,8 @@ const routes: Array<RouteType> = [
         ],
     },
     {
-        name: '" + featureName + "." + moduleName + @".edit',
-        path: '/" + featureName + "/" + moduleName + @"/edit/:id',
+        name: '" + _pathImport + @".edit',
+        path: '/" + _pathActions + @"/edit/:id',
         accessControl: true,
         component: Edit,
         breadCrumb: [

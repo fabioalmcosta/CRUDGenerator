@@ -1,13 +1,15 @@
-﻿public static class RepositoryTemplateGenerator
+﻿using System.Xml.Linq;
+
+public static class RepositoryTemplateGenerator
 {
-    public static string WriteModelClass(string projectName, string featureName, string moduleName)
+    public static string WriteModelClass(string projectName, string featureName, string moduleName, string nameSpace, string _entityLocationUsing, string nameSpaceInt)
     {
         var stringFile = @"using SMARAPD.Common.Infrastructure.Persistence.EntityFramework;
 using SMARAPD.SS_API.Infrastructure.Persistence.Model;
-using SMARAPD.SS_API.Infrastructure.Persistence.Repository." + featureName + @"." + moduleName + @"Ctx.Interfaces;" + @"
-using " + projectName + @"Domain.Entities." + featureName + @"." + moduleName + @"Ctx;" + @"
+using " + nameSpaceInt + @";
+using " + _entityLocationUsing + @";
 
-namespace " + projectName + @"Infrastructure.Persistence.Repository." + featureName + @"." + moduleName + @"Ctx" + @"
+" + nameSpace+ @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + "Repository  : GenericRepository<" + moduleName + ", SsModel>, I" + moduleName + "Repository \r\n\t{\r\n";
@@ -21,12 +23,12 @@ namespace " + projectName + @"Infrastructure.Persistence.Repository." + featureN
         return stringFile;
     }
 
-    public static string WriteInterfaceModelClass(string projectName, string featureName, string moduleName)
+    public static string WriteInterfaceModelClass(string projectName, string featureName, string moduleName, string nameSpace, string _entityLocationUsing)
     {
         var stringFile = @"using SMARAPD.Common.Infrastructure.Persistence.EntityFramework;
-using " + projectName + @"Domain.Entities." + featureName + @"." + moduleName + @"Ctx;" + @"
+using " + _entityLocationUsing + @";
 
-namespace " + projectName + @"Infrastructure.Persistence.Repository." + featureName + @"." + moduleName + @"Ctx.Interfaces" + @"
+namespace " + nameSpace + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic interface I" + moduleName + "Repository  : IRepository<" + moduleName + "> \r\n\t{\r\n";

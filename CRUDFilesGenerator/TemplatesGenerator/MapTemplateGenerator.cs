@@ -1,12 +1,12 @@
 ﻿public static class MapTemplateGenerator
 {
-    public static string WriteModelClass(string projectName, string featureName, string moduleName)
+    public static string WriteModelClass(string projectName, string featureName, string moduleName, string nameSpace, string usingLocation)
     {
         var stringFile = @"using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using " + projectName + @"Domain.Entities." + featureName + @"." + moduleName + @"Ctx;" + @"
+using " + usingLocation + @";
 
-namespace " + projectName + @"Infrastructure.Persistence.Map." + featureName + @"." + moduleName + @"Ctx" + @"
+" + nameSpace + @"
 {";
 
         //stringFile = stringFile + "\r\n\t[Table(\"" + FileData.TableName + "\")]";

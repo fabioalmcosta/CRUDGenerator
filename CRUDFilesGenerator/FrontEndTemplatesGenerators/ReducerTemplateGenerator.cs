@@ -2,7 +2,7 @@
 
 public static class ReducerTemplateGenerator
 {
-    public static string WriteReducerClass(string featureName, string moduleName)
+    public static string WriteReducerClass(string featureName, string moduleName, string _actionsTypes)
     {
 
         string[] split = Regex.Split(moduleName, @"(?<!^)(?=[A-Z])");
@@ -35,9 +35,9 @@ const reduce = (state = initialState, action: ReducerActionType = {
 }) => {
   const payload = action.payload || {};
   switch (action.type) {
-    case types."+ typeModuleName + @"_SET:
+    case types."+ _actionsTypes + @"_SET:
         return state.merge({ ...payload.data });
-    case types." + typeModuleName + @"_RESET:
+    case types." + _actionsTypes + @"_RESET:
         return initialState;
     case commonActionType.RESET:
         return initialState;

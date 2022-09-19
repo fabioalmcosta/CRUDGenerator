@@ -1,8 +1,8 @@
 ﻿public static class DtoTemplateGenerator
 {
-    public static string WriteModelClass(string projectName, string featureName, string moduleName, string extension)
+    public static string WriteModelClass(string projectName, string featureName, string moduleName, string extension, string nameSpace)
     {
-        var stringFile = @"namespace " + projectName + @"Crosscutting.DTO." + featureName + @"." + moduleName + @"Ctx" + @"
+        var stringFile = nameSpace + @"
 {
     public class " + moduleName + extension + @"
     {

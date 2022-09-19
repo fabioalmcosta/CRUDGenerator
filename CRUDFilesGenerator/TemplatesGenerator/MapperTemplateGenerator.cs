@@ -1,11 +1,11 @@
 ﻿public static class MapperTemplateGenerator
 {
-    public static string WriteModelClass(string projectName, string featureName, string moduleName)
+    public static string WriteModelClass(string projectName, string featureName, string moduleName, string nameSpace, string dtoNameSpace)
     {
         var stringFile = @"using " + projectName + @"Domain.Entities." + featureName + @"." + moduleName + @"Ctx;" + @"
-using " + projectName + @"Crosscutting.DTO." + featureName + @"." + moduleName + @"Ctx;" + @"
+using " + dtoNameSpace + @";
 
-namespace " + projectName + @"Service.Mappers." + featureName + @"." + moduleName + @"Ctx" + @"
+" + nameSpace + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + "Mapper \r\n\t{\r\n\t\t";

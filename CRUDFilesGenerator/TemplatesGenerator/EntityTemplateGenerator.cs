@@ -1,6 +1,6 @@
 ﻿public static class EntityTemplateGenerator
 {
-    public static string WriteModelClass(string projectName, string featureName, string moduleName)
+    public static string WriteModelClass(string projectName, string featureName, string moduleName, string nameSpace)
     {
         var stringFile = @"using Newtonsoft.Json;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace " + projectName + @"Domain.Entities." + featureName + @"." + moduleName + @"Ctx" + @"
+namespace " + nameSpace + @"
 {";
 
         //stringFile = stringFile + "\r\n\t[Table(\"" + FileData.TableName + "\")]";
