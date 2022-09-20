@@ -11,6 +11,8 @@
     private string _repositoryIntUsing;
     private string _repositoryUsing;
     private string _unitOfWorkInter;
+    private string _serviceImport;
+    private string _dtoImport;
     public FileGenerator(string projectName, string featureName, string internContext, string dir, string baseNameSpace, string internNameSpacePath, string moduleName)
     {
         _projectName = projectName;
@@ -35,11 +37,11 @@
         }
 
         GenerateEntity();
-        GenerateMap();
         GenerateRepository();
         GenerateUnitOfWork();
-        GenerateController();
         GenerateService();
+        GenerateMap();
+        GenerateController();
         GenerateMappers();
         GenerateValidations();
         GenerateDtos();
@@ -145,15 +147,15 @@
 
         var fileDir = dir + _moduleName + "Controller.cs";
 
-        await File.WriteAllTextAsync(fileDir, ControllerTemplateGenerator.WriteModelClass(_baseNameSpace, _featureName, _moduleName, !string.IsNullOrEmpty(_internNameSpacePath) ? _internNameSpacePath : _moduleName, nameSpace));
+        await File.WriteAllTextAsync(fileDir, ControllerTemplateGenerator.WriteModelClass(_baseNameSpace, _featureName, _moduleName, !string.IsNullOrEmpty(_internNameSpacePath) ? _internNameSpacePath : _moduleName, nameSpace , _dtoImport, _serviceImport));
 
     }
     private async void GenerateService()
     {
         string dir = _dir + _projectName + @"Service\Modules\" + _featureName + @"/" + _internContextPath + "/";
         string interfaceDir = dir + @"\Interfaces\";
-        string nameSpace = "namespace " + _baseNameSpace + @"Service.Modules." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
-        string dtoNameSpace = _baseNameSpace + @"Crosscutting.DTO." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
+        _serviceImport =  _baseNameSpace + @"Service.Modules." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
+        _dtoImport = _baseNameSpace + @"Crosscutting.DTO." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
         string mappersNameSpace = _baseNameSpace + @"Service.Mappers." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
         string modulesNameSpace = _baseNameSpace + @"Service.Modules." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
         string validationsNameSpace = _baseNameSpace + @"Service.Validations.Modules." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
@@ -178,9 +180,9 @@
                 _baseNameSpace,
                 _featureName,
                 _moduleName,
-                nameSpace,
+                _serviceImport,
                 _internNameSpacePath,
-                dtoNameSpace,
+                _dtoImport,
                 _entityLocationUsing,
                 _repositoryIntUsing,
                 _unitOfWorkInter,
@@ -188,7 +190,7 @@
                 modulesNameSpace,
                 validationsNameSpace
             ));
-        await File.WriteAllTextAsync(iFileDir, ApplicationServiceTemplateGenerator.WriteInterfaceModelClass(_baseNameSpace, _featureName, _moduleName, dtoNameSpace, _internNameSpacePath, dtoNameSpace, _entityLocationUsing));
+        await File.WriteAllTextAsync(iFileDir, ApplicationServiceTemplateGenerator.WriteInterfaceModelClass(_baseNameSpace, _featureName, _moduleName, _serviceImport, _internNameSpacePath, _dtoImport, _entityLocationUsing));
     }
     private async void GenerateMappers()
     {
@@ -203,7 +205,7 @@
 
         var fileDir = dir + _moduleName + "Mapper.cs";
 
-        await File.WriteAllTextAsync(fileDir, MapperTemplateGenerator.WriteModelClass(_baseNameSpace, _featureName, _moduleName, nameSpace, dtoNameSpace));
+        await File.WriteAllTextAsync(fileDir, MapperTemplateGenerator.WriteModelClass(_baseNameSpace, _featureName, _moduleName, nameSpace, dtoNameSpace, _entityLocationUsing));
 
     }
     private async void GenerateValidations()

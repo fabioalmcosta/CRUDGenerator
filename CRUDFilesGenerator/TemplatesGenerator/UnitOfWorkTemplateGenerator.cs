@@ -10,7 +10,7 @@ using SMARAPD.SS_API.Infrastructure.Persistence.Model;
 using " + _repositoryIntUsing + @";
 using " + nameSpaceInt + @";
 
-" +nameSpace + @";
+" +nameSpace + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + "UnitOfWork  : GenericUnitOfWork, I" + moduleName + "UnitOfWork \r\n\t{\r\n";
@@ -33,9 +33,9 @@ using " + nameSpaceInt + @";
     public static string WriteInterfaceModelClass(string projectName, string featureName, string moduleName, string _entityLocationUsing, string nameSpaceInt, string _repositoryIntUsing)
     {
         var stringFile = @"using SMARAPD.Common.Infrastructure.Persistence;
-using " + projectName + _repositoryIntUsing + @";
+using " + _repositoryIntUsing + @";
 
-namespace " + nameSpaceInt + @";
+namespace " + nameSpaceInt + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic interface I" + moduleName + "UnitOfWork  : IGenericUnitOfWork \r\n\t{\r\n";

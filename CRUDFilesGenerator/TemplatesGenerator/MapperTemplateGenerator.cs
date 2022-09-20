@@ -1,8 +1,8 @@
 ﻿public static class MapperTemplateGenerator
 {
-    public static string WriteModelClass(string projectName, string featureName, string moduleName, string nameSpace, string dtoNameSpace)
+    public static string WriteModelClass(string projectName, string featureName, string moduleName, string nameSpace, string dtoNameSpace, string _entityLocationUsing)
     {
-        var stringFile = @"using " + projectName + @"Domain.Entities." + featureName + @"." + moduleName + @"Ctx;" + @"
+        var stringFile = @"using " + _entityLocationUsing + @";
 using " + dtoNameSpace + @";
 
 " + nameSpace + @"

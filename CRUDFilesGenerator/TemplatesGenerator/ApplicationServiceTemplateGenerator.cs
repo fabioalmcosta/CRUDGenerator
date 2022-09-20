@@ -16,7 +16,7 @@ using " + _repositoryIntUsing + @";
 using " + _unitOfWorkInter + @";
 using " + mappersNameSpace + @";
 using " + projectName + @"Service.Modules.Base;
-using " + modulesNameSpace + @";
+using " + modulesNameSpace + @".Interfaces;
 using " + validationsNameSpace + @";
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-" + nameSpace + @"
+namespace " + nameSpace + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + "ApplicationService : BaseApplicationService<I" + moduleName + "UnitOfWork, I" + moduleName + "Repository, " + moduleName + ">, I" + moduleName + "ApplicationService \r\n\t{\r\n";
@@ -73,7 +73,7 @@ using System.Threading.Tasks;
         {
             " + moduleName + " " + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @" = _mapper.MapearEntidade(dto);
 
-            await Validate(" + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @", _validator);
+            await ValidateAsync(" + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @", _validator);
 
             _uow." + moduleName + @"Repository.Add(" + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @");
 
@@ -90,7 +90,7 @@ using System.Threading.Tasks;
 
             " + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @"Db = _mapper.MapearEntidade(" + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @"Db, dto);
 
-            await Validate(" + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @"Db, _validator);
+            await ValidateAsync(" + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @"Db, _validator);
 
             await _uow.CommitAsync(true);
         }
@@ -133,7 +133,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using " + dtoNameSpace + @";
 
-namespace " + nameSpace + @"Ctx.Interfaces" + @"
+namespace " + nameSpace + @".Interfaces" + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic interface I" + moduleName + "ApplicationService \r\n\t{\r\n" + @"

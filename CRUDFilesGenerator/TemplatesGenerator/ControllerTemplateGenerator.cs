@@ -1,6 +1,6 @@
 ﻿public static class ControllerTemplateGenerator
 {
-    public static string WriteModelClass(string projectName, string featureName, string moduleName, string _nameSpacePath, string nameSpace)
+    public static string WriteModelClass(string projectName, string featureName, string moduleName, string _nameSpacePath, string nameSpace, string _dtoNameSpace, string _appServiceImport)
     {
         var stringFile = @"using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -12,8 +12,8 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
-using " + projectName + @"Service.Modules." + _nameSpacePath + @"Ctx.Interfaces;" + @"
-using " + projectName + @"Crosscutting.DTO." + _nameSpacePath + @"Ctx;" + @"
+using " + _appServiceImport + @".Interfaces;
+using " + _dtoNameSpace + @";
 
 
 " + nameSpace + @"
