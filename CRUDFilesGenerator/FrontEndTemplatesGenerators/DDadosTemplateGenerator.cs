@@ -24,7 +24,7 @@ public static class DDadosTemplateGenerator
         var stringFile = @"import { DDadosType } from '@/common/types/ddados.types';
 
 const DDados: DDadosType = {
-    Titulo: '"+ LabelsModuleName + @"',
+    Titulo: '" + LabelsModuleName + @"',
     Campos: {
         Id: {
             Tipo: 'number',

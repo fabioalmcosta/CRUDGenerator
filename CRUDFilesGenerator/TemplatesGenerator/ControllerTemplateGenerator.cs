@@ -25,7 +25,7 @@ using " + _dtoNameSpace + @";
     [ApiController]";
 
         stringFile = stringFile + "\r\n\t[Route(\"[controller]\")]";
-    
+
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + "Controller  : ControllerBase \r\n\t{\r\n";
 
         stringFile = stringFile + "\t\tprivate readonly I" + moduleName + "ApplicationService _appService;\r\n\t\t";

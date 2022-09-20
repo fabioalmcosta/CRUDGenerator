@@ -21,7 +21,7 @@ const " + nomeDaClasse + @"Edit: FC = (props: any) => {
     }, []);
 
     const onSubmit = (values: any) => {
-        props."+ moduleName + @"Actions.update(id, values);
+        props." + moduleName + @"Actions.update(id, values);
     }
 
     return (

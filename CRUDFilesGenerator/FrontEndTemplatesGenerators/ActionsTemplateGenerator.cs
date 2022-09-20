@@ -20,14 +20,14 @@ public static class ActionsTemplateGenerator
             }
         }
 
-        var stringFile = @"import * as types from './"+ moduleName + @".actionTypes';
+        var stringFile = @"import * as types from './" + moduleName + @".actionTypes';
 
 export default {
   getById: (id: number) => ({
     type: types." + _actionsTypes + @"_GET,
     payload: { id }
   }),
-  set"+ nomeDaClasse + @": (data: unknown | null) => ({
+  set" + nomeDaClasse + @": (data: unknown | null) => ({
     type: types." + _actionsTypes + @"_SET,
     payload: { data },
   }),

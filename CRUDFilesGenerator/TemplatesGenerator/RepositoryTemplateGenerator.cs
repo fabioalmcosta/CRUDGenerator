@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-public static class RepositoryTemplateGenerator
+﻿public static class RepositoryTemplateGenerator
 {
     public static string WriteModelClass(string projectName, string featureName, string moduleName, string nameSpace, string _entityLocationUsing, string nameSpaceInt)
     {
@@ -9,7 +7,7 @@ using SMARAPD.SS_API.Infrastructure.Persistence.Model;
 using " + nameSpaceInt + @";
 using " + _entityLocationUsing + @";
 
-" + nameSpace+ @"
+" + nameSpace + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + "Repository  : GenericRepository<" + moduleName + ", SsModel>, I" + moduleName + "Repository \r\n\t{\r\n";

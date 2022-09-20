@@ -22,7 +22,7 @@ public static class ReducerTemplateGenerator
         var stringFile = @"import * as commonActionType from '@common/store/common/common.actionsType';
 import store from '@common/store/store';
 import Immutable from 'seamless-immutable';
-import * as types from './"+ moduleName + @".actionTypes'
+import * as types from './" + moduleName + @".actionTypes'
 import ReducerActionType from '@/common/types/reducer.types';
 
 const initialState = Immutable({
@@ -35,7 +35,7 @@ const reduce = (state = initialState, action: ReducerActionType = {
 }) => {
   const payload = action.payload || {};
   switch (action.type) {
-    case types."+ _actionsTypes + @"_SET:
+    case types." + _actionsTypes + @"_SET:
         return state.merge({ ...payload.data });
     case types." + _actionsTypes + @"_RESET:
         return initialState;
@@ -46,7 +46,7 @@ const reduce = (state = initialState, action: ReducerActionType = {
   }
 };
 
-store.registerDynamicModule('"+ featureName + "."+ moduleName + "', reduce);";
+store.registerDynamicModule('" + featureName + "." + moduleName + "', reduce);";
 
         return stringFile;
 

@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-public static class GridDDadosTemplateGenerator
+﻿public static class GridDDadosTemplateGenerator
 {
     public static string WriteGridDDadosClass(string moduleName)
     {
@@ -8,10 +6,10 @@ public static class GridDDadosTemplateGenerator
         var nomeDaClasse = char.ToUpper(moduleName[0]) + moduleName.Substring(1);
 
         var stringFile = @"import { GridDDados } from '@/common/types/ddados.types';
-import DDados from './"+ moduleName + @".ddados';
+import DDados from './" + moduleName + @".ddados';
 import * as typeArray from '@/modules/common/app/helpers/grid.typeArray';
 
-const Grid"+ nomeDaClasse + @"DDados: GridDDados = {
+const Grid" + nomeDaClasse + @"DDados: GridDDados = {
     Order: [
         {
             fieldName: DDados.Campos.Id.Label,
@@ -30,7 +28,7 @@ const Grid"+ nomeDaClasse + @"DDados: GridDDados = {
     ],
 };
 
-export default Grid"+ nomeDaClasse + @"DDados;";
+export default Grid" + nomeDaClasse + @"DDados;";
 
         return stringFile;
 

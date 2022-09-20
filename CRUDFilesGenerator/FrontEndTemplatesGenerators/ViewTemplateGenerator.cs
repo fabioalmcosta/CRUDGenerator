@@ -17,7 +17,7 @@ const " + nomeDaClasse + @"View: FC = (props: any) => {
     const isView = true
 
     useEffect(() => {
-        props."+ moduleName + @"Actions.getById(id, isView);
+        props." + moduleName + @"Actions.getById(id, isView);
     }, []);
 
     return (

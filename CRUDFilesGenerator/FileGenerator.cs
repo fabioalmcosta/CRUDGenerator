@@ -45,8 +45,6 @@
         GenerateMappers();
         GenerateValidations();
         GenerateDtos();
-        //GenerateTestsMocks();
-        //GenerateTestsModules();
 
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
@@ -147,14 +145,14 @@
 
         var fileDir = dir + _moduleName + "Controller.cs";
 
-        await File.WriteAllTextAsync(fileDir, ControllerTemplateGenerator.WriteModelClass(_baseNameSpace, _featureName, _moduleName, !string.IsNullOrEmpty(_internNameSpacePath) ? _internNameSpacePath : _moduleName, nameSpace , _dtoImport, _serviceImport));
+        await File.WriteAllTextAsync(fileDir, ControllerTemplateGenerator.WriteModelClass(_baseNameSpace, _featureName, _moduleName, !string.IsNullOrEmpty(_internNameSpacePath) ? _internNameSpacePath : _moduleName, nameSpace, _dtoImport, _serviceImport));
 
     }
     private async void GenerateService()
     {
         string dir = _dir + _projectName + @"Service\Modules\" + _featureName + @"/" + _internContextPath + "/";
         string interfaceDir = dir + @"\Interfaces\";
-        _serviceImport =  _baseNameSpace + @"Service.Modules." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
+        _serviceImport = _baseNameSpace + @"Service.Modules." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
         _dtoImport = _baseNameSpace + @"Crosscutting.DTO." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
         string mappersNameSpace = _baseNameSpace + @"Service.Mappers." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
         string modulesNameSpace = _baseNameSpace + @"Service.Modules." + _featureName + (!string.IsNullOrEmpty(_internNameSpacePath) ? @"." + _internNameSpacePath : "");
@@ -241,46 +239,5 @@
         await File.WriteAllTextAsync(fileDir + @"PutDto.cs", DtoTemplateGenerator.WriteModelClass(_baseNameSpace, _featureName, _moduleName, "PutDto", nameSpace));
 
     }
-    //private async void GenerateTestsMocks()
-    //{
-    //    string dir = _dir + _projectName + @"Service.Tests\Mockups\" + _featureName + @"/" + _internContextPath + "/";
-
-    //    if (!Directory.Exists(dir))
-    //    {
-    //        Directory.CreateDirectory(dir);
-    //    }
-
-    //    var fileDir = dir + _moduleName + "Mocks.cs";
-    //    Console.WriteLine("------------------------------------------------------");
-    //    Console.WriteLine();
-    //    Console.WriteLine("Gerando arquivo de mocks!");
-
-    //    await File.WriteAllTextAsync(fileDir, "");
-
-    //    Console.WriteLine("Arquivo gerado com sucesso!");
-    //    Console.WriteLine();
-    //    Console.WriteLine("------------------------------------------------------");
-    //}
-    //    private async void GenerateTestsModules()
-    //    {
-    //        string dir = _dir + _projectName + @"Service.Tests\Modules\" + _featureName + @"\" + _internContext + @"Ctx\";
-
-    //        if (!Directory.Exists(dir))
-    //        {
-    //            Directory.CreateDirectory(dir);
-    //        }
-
-    //        var fileDir = dir + _internContext + "ApplicationServiceTests.cs";
-    //        Console.WriteLine("------------------------------------------------------");
-    //        Console.WriteLine();
-    //        Console.WriteLine("Gerando arquivo de modules!");
-
-    //        await File.WriteAllTextAsync(fileDir, "");
-
-    //        Console.WriteLine("Arquivo gerado com sucesso!");
-    //        Console.WriteLine();
-    //        Console.WriteLine("------------------------------------------------------");
-    //    }
-
-
+    
 }

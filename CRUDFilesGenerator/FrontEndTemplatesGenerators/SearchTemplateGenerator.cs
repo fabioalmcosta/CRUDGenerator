@@ -1,6 +1,6 @@
 ﻿public static class SearchTemplateGenerator
 {
-    public static string WriteSearchClass( string moduleName)
+    public static string WriteSearchClass(string moduleName)
     {
         var nomeDaClasse = char.ToUpper(moduleName[0]) + moduleName.Substring(1);
 
@@ -17,7 +17,7 @@ const " + nomeDaClasse + @"Search: FC = () => {
   );
 };
 
-export default "+ nomeDaClasse + "Search;";
+export default " + nomeDaClasse + "Search;";
 
         return stringFile;
 

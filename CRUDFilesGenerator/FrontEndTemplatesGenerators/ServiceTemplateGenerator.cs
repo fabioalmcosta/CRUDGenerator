@@ -8,7 +8,7 @@ import store from '@common/store/store';
 
 const ssRoute = window.api_routes.smarAPD_SS_Domain;
 const http = baseService(store, ssRoute);
-const base = '/"+ moduleName + @"';
+const base = '/" + moduleName + @"';
 
 const apiDef = {
     filter(data, headers) {

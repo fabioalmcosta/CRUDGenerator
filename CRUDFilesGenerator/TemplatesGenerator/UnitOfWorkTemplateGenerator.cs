@@ -10,7 +10,7 @@ using SMARAPD.SS_API.Infrastructure.Persistence.Model;
 using " + _repositoryIntUsing + @";
 using " + nameSpaceInt + @";
 
-" +nameSpace + @"
+" + nameSpace + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + "UnitOfWork  : GenericUnitOfWork, I" + moduleName + "UnitOfWork \r\n\t{\r\n";
