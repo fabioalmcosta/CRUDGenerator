@@ -26,7 +26,7 @@ namespace CRUDFilesGenerator
             _actionsTypes = actionsTypes;
         }
 
-        public async void GenerateFrontend()
+        public void GenerateFrontend()
         {
             if (char.IsUpper(_featureName[0]) == true)
             {
@@ -54,13 +54,15 @@ namespace CRUDFilesGenerator
             GenerateGridDdadosFile();
             GenerateRoutesFile();
 
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine("Arquivos gerados com sucesso!");
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine("||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-            Console.WriteLine("******************************************************");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+            Console.WriteLine("■■■■■■■■■ Arquivos do frontend gerados com sucesso! ■■■■■■■■■■■■");
+            Console.WriteLine("■■■■■■■■■           Aperte para continuar!         ■■■■■■■■■■■■■");
+            Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadLine();
+            Console.Clear();
         }
-
         private async void GenerateGrid()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\components\";
@@ -70,17 +72,10 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".grid.tsx";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando arquivo de grid!");
+
 
             await File.WriteAllTextAsync(fileDir, GridTemplateGenerator.WriteGridClass(_featureName, _moduleName, _pathImport, _pathActions));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateForm()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\components\";
@@ -90,17 +85,10 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".form.tsx";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando arquivo de formulário!");
+
 
             await File.WriteAllTextAsync(fileDir, FormTemplateGenerator.WriteFormClass(_featureName, _moduleName, _pathImport));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateSearchFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\container\";
@@ -110,17 +98,9 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".search.tsx";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando container da grid da entidade!");
 
             await File.WriteAllTextAsync(fileDir, SearchTemplateGenerator.WriteSearchClass(_moduleName));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateNewFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\container\";
@@ -130,17 +110,9 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".new.tsx";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando container de adição da entidade!");
 
             await File.WriteAllTextAsync(fileDir, NewTemplateGenerator.WriteNewClass(_moduleName));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateViewFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\container\";
@@ -150,17 +122,10 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".view.tsx";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando container de visualização da entidade!");
+
 
             await File.WriteAllTextAsync(fileDir, ViewTemplateGenerator.WriteViewClass(_moduleName));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateEditFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\container\";
@@ -170,17 +135,10 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".edit.tsx";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando container de edição da entidade!");
+
 
             await File.WriteAllTextAsync(fileDir, EditTemplateGenerator.WriteEditClass(_moduleName));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateServiceFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\service\";
@@ -190,17 +148,9 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".service.js";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando service da entidade!");
 
             await File.WriteAllTextAsync(fileDir, ServiceTemplateGenerator.WriteServiceClass(_moduleName));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateActionsFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\store\";
@@ -210,17 +160,10 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".actions.ts";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando arquivo de actions da entidade!");
+
 
             await File.WriteAllTextAsync(fileDir, ActionsTemplateGenerator.WriteActionsClass(_moduleName, _actionsName, _actionsTypes));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateActionTypesFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\store\";
@@ -230,17 +173,9 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".actionTypes.ts";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando arquivo de actionsTypes da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, ActionTypesTemplateGenerator.WriteActionsTypesClass(_featureName, _moduleName , _actionsTypes , _pathImport));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
+            await File.WriteAllTextAsync(fileDir, ActionTypesTemplateGenerator.WriteActionsTypesClass(_featureName, _moduleName, _actionsTypes, _pathImport));
         }
-
         private async void GenerateReducerFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\store\";
@@ -250,17 +185,9 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".reducer.ts";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando arquivo de reducer da entidade!");
 
             await File.WriteAllTextAsync(fileDir, ReducerTemplateGenerator.WriteReducerClass(_featureName, _moduleName, _actionsTypes));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateSagaFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\store\";
@@ -270,17 +197,9 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".saga.js";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando arquivo saga da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, SagaTemplateGenerator.WriteSagaClass(_featureName, _moduleName, _actionsTypes , _pathImport));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
+            await File.WriteAllTextAsync(fileDir, SagaTemplateGenerator.WriteSagaClass(_featureName, _moduleName, _actionsTypes, _pathImport));
         }
-
         private async void GenerateSelectorsFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\store\";
@@ -290,17 +209,10 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".selectors.ts";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando arquivo de selectors da entidade!");
+
 
             await File.WriteAllTextAsync(fileDir, SelectorsTemplateGenerator.WriteSelectorsClass(_featureName, _moduleName, _pathImport));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateDdadosFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\";
@@ -310,17 +222,9 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".ddados.ts";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando arquivo ddados da entidade!");
 
             await File.WriteAllTextAsync(fileDir, DDadosTemplateGenerator.WriteDDadosClass(_moduleName));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateGridDdadosFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\";
@@ -330,17 +234,9 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".grid.ddados.ts";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando arquivo Grid Ddados da entidade!");
 
             await File.WriteAllTextAsync(fileDir, GridDDadosTemplateGenerator.WriteGridDDadosClass(_moduleName));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
         }
-
         private async void GenerateRoutesFile()
         {
             string dir = _dir + _projectName + @"\WebApp\src\modules\" + _featureName + @"/" + _internContext + @"\";
@@ -350,15 +246,8 @@ namespace CRUDFilesGenerator
             }
 
             var fileDir = dir + _moduleName + ".routes.ts";
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Gerando arquivo routes da entidade!");
 
-            await File.WriteAllTextAsync(fileDir, RoutesTemplateGenerator.WriteRoutesClass(_featureName, _moduleName, _pathImport , _pathActions));
-
-            Console.WriteLine("Arquivo gerado com sucesso!");
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------");
+            await File.WriteAllTextAsync(fileDir, RoutesTemplateGenerator.WriteRoutesClass(_featureName, _moduleName, _pathImport, _pathActions));
         }
     }
 }

@@ -131,9 +131,9 @@ using SMARAPD.Common.Infrastructure.Persistence.FilterExtension;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using " + dtoNameSpace + @"
+using " + dtoNameSpace + @";
 
-" + nameSpace + @"Ctx.Interfaces" + @"
+namespace " + nameSpace + @"Ctx.Interfaces" + @"
 {";
 
         stringFile = stringFile + "\r\n\tpublic interface I" + moduleName + "ApplicationService \r\n\t{\r\n" + @"

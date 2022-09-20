@@ -37,7 +37,7 @@ public class FileGeneratorMigration
         _baseClass = baseClassDir + "Mig_" + $"{_date.Year}{dia}{mes}{hora}{minuto}{id}";
     }
 
-    public async void GenerateMigration()
+    public void GenerateMigration()
     {
         if (char.IsUpper(_featureName[0]) == true)
         {
@@ -103,13 +103,12 @@ public class FileGeneratorMigration
         var fileDirListagem = _baseClass + $"_SMAR{_prefixoEmpresa.ToLower()}_Listagem" + _moduleName + ".cs";
 
         Console.WriteLine("------------------------------------------------------");
-        Console.WriteLine();
         Console.WriteLine("Gerando arquivos de classe!");
 
-        string dia = String.Format("{0:D2}", _date.Day);
-        string mes = String.Format("{0:D2}", _date.Month);
-        string hora = String.Format("{0:D2}", _date.Hour);
-        string minuto = String.Format("{0:D2}", _date.Minute);
+        string dia = string.Format("{0:D2}", _date.Day);
+        string mes = string.Format("{0:D2}", _date.Month);
+        string hora = string.Format("{0:D2}", _date.Hour);
+        string minuto = string.Format("{0:D2}", _date.Minute);
 
 
         string path = $"Sqls/{_prefixoEmpresa.ToUpper()}/{_date.Year}/{mes}";
