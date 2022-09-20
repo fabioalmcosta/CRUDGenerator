@@ -10,7 +10,7 @@ using SMARAPD.SS_API.Infrastructure.Persistence.Model;
 using " + _repositoryIntUsing + @";
 using " + nameSpaceInt + @";
 
-namespace " + projectName + @"Infrastructure.Persistence.UnitOfWork." + nameSpaceInt + @"
+" +nameSpace + @";
 {";
 
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + "UnitOfWork  : GenericUnitOfWork, I" + moduleName + "UnitOfWork \r\n\t{\r\n";
@@ -35,7 +35,7 @@ namespace " + projectName + @"Infrastructure.Persistence.UnitOfWork." + nameSpac
         var stringFile = @"using SMARAPD.Common.Infrastructure.Persistence;
 using " + projectName + _repositoryIntUsing + @";
 
-namespace " + projectName + @"Infrastructure.Persistence.UnitOfWork." + nameSpaceInt + @"
+namespace " + nameSpaceInt + @";
 {";
 
         stringFile = stringFile + "\r\n\tpublic interface I" + moduleName + "UnitOfWork  : IGenericUnitOfWork \r\n\t{\r\n";
