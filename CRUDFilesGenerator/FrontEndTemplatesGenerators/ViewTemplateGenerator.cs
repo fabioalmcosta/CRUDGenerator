@@ -10,6 +10,7 @@ import FloatingButton from '@/components/floatingButton/FloatingButton';
 import " + moduleName + "Actions from '../store/" + moduleName + @".actions';
 import " + moduleName + "Selectors from '../store/" + moduleName + @".selectors';
 import " + nomeDaClasse + "Form from '../components/" + moduleName + @".form';
+import * as Enum from '@/common/enum';
 
 const " + nomeDaClasse + @"View: FC = (props: any) => {
 
@@ -17,13 +18,13 @@ const " + nomeDaClasse + @"View: FC = (props: any) => {
     const isView = true
 
     useEffect(() => {
-        props."+ moduleName + @"Actions.getById(id, isView);
+        props." + moduleName + @"Actions.getById(id, isView);
     }, []);
 
     return (
         <>
             <FloatingButton />
-            <" + nomeDaClasse + @"Form prefix='V' />
+            <" + nomeDaClasse + @"Form prefix={Enum.Prefix.View} />
         </>
     );
 };

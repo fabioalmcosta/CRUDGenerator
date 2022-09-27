@@ -25,7 +25,7 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
     [ApiController]";
 
         stringFile = stringFile + "\r\n\t[Route(\"[controller]\")]";
-    
+
         stringFile = stringFile + "\r\n\tpublic class " + moduleName + "Controller  : ControllerBase \r\n\t{\r\n";
 
         stringFile = stringFile + "\t\tprivate readonly I" + moduleName + "ApplicationService _appService;\r\n\t\t";
@@ -41,23 +41,23 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
         /// </summary>
         [HttpPost(" + "\"filter\"" + @")]
         [SwaggerResponse((int)HttpStatusCode.OK, " + "\"Dados de " + moduleName + " em formato de Grid.\"" + @", typeof(GridView<" + moduleName + @"GridDto>))]
-        public async Task<IActionResult> FindByFilter(Filter filter, CancellationToken ct) => Ok(await _appService.FindByFilter(filter, ct));
+        public async Task<IActionResult> FindByFilterAsync(Filter filter, CancellationToken ct) => Ok(await _appService.FindByFilterAsync(filter, ct));
 
         /// <summary>
         /// Busca de " + moduleName + @" através de um Id de entrada.
         /// </summary>
         [HttpGet(" + "\"{id:int}\"" + @")]
         [SwaggerResponse((int)HttpStatusCode.OK, " + "\"Dados do " + moduleName + " buscado.\"" + @", typeof(" + moduleName + @"GetDto))]
-        public async Task<IActionResult> GetById(int id, CancellationToken ct) => Ok(await _appService.GetById(id, ct));
+        public async Task<IActionResult> GetByIdAsync(int id, CancellationToken ct) => Ok(await _appService.GetByIdAsync(id, ct));
 
         /// <summary>
         /// Exclusão de " + moduleName + @" através de um Id de entrada.
         /// </summary>
         [HttpDelete(" + "\"{id:int}\"" + @")]
         [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} excluído.\"" + @")]
-        public async Task<IActionResult> Delete(int id, CancellationToken ct)
+        public async Task<IActionResult> DeleteAsync(int id, CancellationToken ct)
         {
-            await _appService.Delete(id, ct);
+            await _appService.DeleteAsync(id, ct);
             return Ok();
         }
 
@@ -66,9 +66,9 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
         /// </summary>
         [HttpDelete(" + "\"massdelete\"" + @")]
         [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} excluídos.\"" + @")]
-        public async Task<IActionResult> MassDelete(IEnumerable<int> data, CancellationToken ct)
+        public async Task<IActionResult> MassDeleteAsync(IEnumerable<int> data, CancellationToken ct)
         {
-            await _appService.Delete(data, ct);
+            await _appService.DeleteAsync(data, ct);
             return Ok();
         }
 
@@ -77,16 +77,16 @@ namespace " + projectName + @"Interface.Controllers." + featureName + @"." + mod
         /// </summary>
         [HttpPost]
         [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} inserido com sucesso.\"" + @", typeof(int))]
-        public async Task<IActionResult> Post(" + moduleName + @"PostDto dto, CancellationToken ct) => Ok(await _appService.Create(dto, ct));
+        public async Task<IActionResult> PostAsync(" + moduleName + @"PostDto dto, CancellationToken ct) => Ok(await _appService.CreateAsync(dto, ct));
 
         /// <summary>
         /// Edição de " + moduleName + @" existente através de um DTO de entrada.
         /// </summary>
         [HttpPut(" + "\"{id:int}\"" + @")]
         [SwaggerResponse((int)HttpStatusCode.OK, " + $"\"{moduleName} editado com sucesso.\"" + @")]
-        public async Task<IActionResult> Put(int id, " + moduleName + @"PutDto dto, CancellationToken ct)
+        public async Task<IActionResult> PutAsync(int id, " + moduleName + @"PutDto dto, CancellationToken ct)
         {
-            await _appService.Update(id, dto, ct);
+            await _appService.UpdateAsync(id, dto, ct);
             return Ok();
         }";
 

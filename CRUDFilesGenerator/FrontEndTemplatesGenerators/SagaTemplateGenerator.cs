@@ -25,7 +25,7 @@ public static class SagaTemplateGenerator
 
         var stringFile = @"import { takeEvery, call, put } from 'redux-saga/effects';
 import formActions from '@common/store/form/form.actions';
-import api from '../service/"+ moduleName + @".service';
+import api from '../service/" + moduleName + @".service';
 import " + moduleName + @"Actions from './" + moduleName + @".actions';
 import * as types from './" + moduleName + @".actionTypes';
 
@@ -43,9 +43,9 @@ function* getById(action) {
 
   try {
     const result = yield call(api.getById, id);
-    yield put("+ moduleName + @"Actions.set"+ nomeFuncao + @"(result.data));
+    yield put(" + moduleName + @"Actions.set" + nomeFuncao + @"(result.data));
   } catch (error) {
-    yield put(formActions.redirect('"+ featureName + "."+ moduleName + @"'));
+    yield put(formActions.redirect('" + featureName + "." + moduleName + @"'));
   }
 }
 

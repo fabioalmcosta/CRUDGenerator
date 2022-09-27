@@ -10,7 +10,7 @@
         var stringFile = @"import React, { FC, useRef } from 'react';
 import DataGrid from '@common/components/grid/dataGrid.component';
 import { connect } from '@common/components/base.component';
-import Grid"+nomeDaClasse+ @" from '../"+moduleName+ @".grid.ddados';
+import Grid" + nomeDaClasse + @" from '../" + moduleName + @".grid.ddados';
 import api from '../service/" + moduleName + @".service';
 import " + moduleName + "Actions from '../store/" + moduleName + @".actions';
 import DDados from '../" + moduleName + @".ddados';
@@ -19,17 +19,16 @@ import * as messages from '@/modules/common/app/helpers/common.messages';
 const " + nomeDaClasse + @"Grid: FC = (props: any) => {
     const gridRef = useRef<unknown>(null);
     const rm = props.routerManager;
-    const columns = Grid"+ nomeDaClasse + @".Columns;
+    const columns = Grid" + nomeDaClasse + @".Columns;
     const order = Grid" + nomeDaClasse + @".Order;
 
     const actions = [
         {
-            title: 'Visualizar',
-            icon: 'far fa-eye',
+            type: 'view',
             onClick: (dataItem: { Id: any; }) => rm.redirect(
                 { name: '" + featureRouteName + "." + moduleRouteName + @".view', parameters: { id: dataItem.Id } },
             ),
-            url: '/"+featureRouteName+"/"+ moduleRouteName + @"/view/:id',
+            url: '/" + featureRouteName + "/" + moduleRouteName + @"/view/:id',
         },
         {
             type: 'edit',
@@ -41,7 +40,7 @@ const " + nomeDaClasse + @"Grid: FC = (props: any) => {
             type: 'delete',
             onClick: async (dataItem: { Id: any; })=> {
                 const result = await _alert.confirm(messages.CONFIRMA_DELETE, 'Remover Registro Selecionado');
-                if (result) props."+ moduleName + @"Actions.remove(dataItem.Id);
+                if (result) props." + moduleName + @"Actions.remove(dataItem.Id);
             },
             url: '/" + featureRouteName + "/" + moduleRouteName + @"/delete/:id',
         },
@@ -51,7 +50,7 @@ const " + nomeDaClasse + @"Grid: FC = (props: any) => {
         recurso: DDados.Titulo,
         service: api.filter,
         filterVersion: 1,
-        webStorage: '"+ featureWebStoreName +"."+ nomeDaClasse + @"',
+        webStorage: '" + featureWebStoreName + "." + nomeDaClasse + @"',
         applySearchOnLoad: false,
     };
 

@@ -35,7 +35,7 @@ static async Task CrudFilesGenerator()
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Digite o caminho do diretório de backend: ");
     string dir = Console.ReadLine();
-    dir = string.IsNullOrEmpty(dir) ? @"C:\CRUDFilesOutput\backend\" + projectName + @"\" : dir + projectName + @"\";
+    dir = string.IsNullOrEmpty(dir) ? @"D:\USR\GIT\" + projectName + @"\" : dir + projectName + @"\";
 
     Console.WriteLine();
     Console.WriteLine("------------------------------------------------------");
@@ -78,7 +78,7 @@ static async Task CrudFilesGenerator()
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Digite o caminho do diretório de frontend: ");
     string dirFront = Console.ReadLine();
-    dirFront = string.IsNullOrEmpty(dirFront) ? @"C:\CRUDFilesOutput\frontend\" : dirFront;
+    dirFront = string.IsNullOrEmpty(dirFront) ? @"D:\USR\GIT\" : dirFront;
 
 
     Console.WriteLine("------------------------------------------------------");
@@ -106,11 +106,11 @@ static async Task CrudFilesGenerator()
 
     Console.WriteLine("------------------------------------------------------");
     Console.WriteLine("Digite o prefixo do projeto ou pressione enter para utilizar o nome definido no código: ");
-    
+
     string prefixo = Console.ReadLine();
     string prefixoP = string.IsNullOrEmpty(prefixo) ? "SS" : prefixo;
 
-    string migrationPath = @"C:\CRUDFilesOutput\Migration\";
-    var migrations = new FileGeneratorMigration(projectFrontName, featureName, moduleName, migrationPath , ID , prefixoP);
+    string migrationPath = @"D:\CRUDFilesOutput\Migration\";
+    var migrations = new FileGeneratorMigration(projectFrontName, featureName, moduleName, migrationPath, ID, prefixoP);
     migrations.GenerateMigration();
 }

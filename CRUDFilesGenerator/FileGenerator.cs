@@ -14,7 +14,7 @@
         _nameSpace = nameSpace;
     }
 
-    public async void Generate()
+    public void Generate()
     {
         if (char.IsUpper(_featureName[0]) == false)
         {

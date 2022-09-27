@@ -10,6 +10,7 @@ import FloatingButton from '@/components/floatingButton/FloatingButton';
 import " + moduleName + "Actions from '../store/" + moduleName + @".actions';
 import " + moduleName + "Selectors from '../store/" + moduleName + @".selectors';
 import " + nomeDaClasse + "Form from '../components/" + moduleName + @".form';
+import * as Enum from '@/common/enum';
 
 const " + nomeDaClasse + @"Edit: FC = (props: any) => {
 
@@ -21,13 +22,13 @@ const " + nomeDaClasse + @"Edit: FC = (props: any) => {
     }, []);
 
     const onSubmit = (values: any) => {
-        props."+ moduleName + @"Actions.update(id, values);
+        props." + moduleName + @"Actions.update(id, values);
     }
 
     return (
         <>
             <FloatingButton />
-            <" + nomeDaClasse + @"Form onSubmit={onSubmit} prefix='E' />
+            <" + nomeDaClasse + @"Form onSubmit={onSubmit} prefix={Enum.Prefix.Edit} />
         </>
     );
 };

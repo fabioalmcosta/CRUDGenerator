@@ -39,7 +39,7 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
             _validator = validator;
         }";
 
-        stringFile = stringFile + "\r\n\t\t" + @"public async Task<GridView<" + moduleName + @"GridDto>> FindByFilter(Filter filter, CancellationToken ct = default)
+        stringFile = stringFile + "\r\n\t\t" + @"public async Task<GridView<" + moduleName + @"GridDto>> FindByFilterAsync(Filter filter, CancellationToken ct = default)
         {
             ct.ThrowIfCancellationRequested();
 
@@ -58,7 +58,7 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
             return new GridView<" + moduleName + @"GridDto> { dataList = await queryDto.ToListAsync(ct), pageCount = pageCount };
         }
 
-        public async Task<" + moduleName + @"GetDto> GetById(int id, CancellationToken ct)
+        public async Task<" + moduleName + @"GetDto> GetByIdAsync(int id, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
 
@@ -69,9 +69,9 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
             return _mapper.MapearEntidade(" + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @");
         }
 
-        public async Task<int> Create(" + moduleName + @"PostDto dto, CancellationToken ct = default)
+        public async Task<int> CreateAsync(" + moduleName + @"PostDto dto, CancellationToken ct = default)
         {
-            "+ moduleName + " " + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @" = _mapper.MapearEntidade(dto);
+            " + moduleName + " " + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @" = _mapper.MapearEntidade(dto);
 
             await Validate(" + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @", _validator);
 
@@ -82,7 +82,7 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
             return " + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @".Id;
         }
 
-        public async Task Update(int id, " + moduleName + @"PutDto dto, CancellationToken ct = default)
+        public async Task UpdateAsync(int id, " + moduleName + @"PutDto dto, CancellationToken ct = default)
         {
             " + moduleName + @" " + char.ToLower(moduleName[0]) + moduleName.Substring(1) + @"Db = await _uow." + moduleName + @"Repository.GetByIdAsync(id);
 
@@ -95,7 +95,7 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
             await _uow.CommitAsync(true);
         }
 
-        public async Task Delete(int id, CancellationToken ct = default)
+        public async Task DeleteAsync(int id, CancellationToken ct = default)
         {
             ct.ThrowIfCancellationRequested();
 
@@ -106,7 +106,7 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
             await _uow.CommitAsync(true);
         }
 
-        public async Task Delete(IEnumerable<int> ids, CancellationToken ct = default)
+        public async Task DeleteAsync(IEnumerable<int> ids, CancellationToken ct = default)
         {
             ct.ThrowIfCancellationRequested();
 
@@ -137,17 +137,17 @@ namespace " + projectName + @"Service.Modules." + featureName + @"." + moduleNam
 {";
 
         stringFile = stringFile + "\r\n\tpublic interface I" + moduleName + "ApplicationService \r\n\t{\r\n" + @"
-            Task<GridView<" + moduleName + @"GridDto>> FindByFilter(Filter filter, CancellationToken ct = default);
+            Task<GridView<" + moduleName + @"GridDto>> FindByFilterAsync(Filter filter, CancellationToken ct = default);
 
-            Task<" + moduleName + @"GetDto> GetById(int id, CancellationToken ct);
+            Task<" + moduleName + @"GetDto> GetByIdAsync(int id, CancellationToken ct);
 
-            Task<int> Create(" + moduleName + @"PostDto dto, CancellationToken ct = default);
+            Task<int> CreateAsync(" + moduleName + @"PostDto dto, CancellationToken ct = default);
 
-            Task Update(int id, " + moduleName + @"PutDto dto, CancellationToken ct = default);
+            Task UpdateAsync(int id, " + moduleName + @"PutDto dto, CancellationToken ct = default);
 
-            Task Delete(int id, CancellationToken ct = default);
+            Task DeleteAsync(int id, CancellationToken ct = default);
 
-            Task Delete(IEnumerable<int> ids, CancellationToken ct = default);
+            Task DeleteAsync(IEnumerable<int> ids, CancellationToken ct = default);
 ";
 
         stringFile = stringFile + "\r\n\t} \r\n}";
